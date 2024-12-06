@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DontExpireFinal.MainPage">
+        <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Add Item" Order="Primary" Priority="0"
+                     Clicked="OnAddItemClicked" />  
+        <ToolbarItem Text="Preferences" Order="Primary" Priority="1"
+                     Clicked="OnPrefsPageClicked" />
+        <ToolbarItem Text="Delete Selected" Order="Secondary" Priority="2"
+                     Clicked="DeleteSelected_Clicked" />
+        </ContentPage.ToolbarItems>
+        <VerticalStackLayout>
+            <!--<HorizontalStackLayout>
+                <Button Text="Add New Entry" Clicked="AddNewEntry_Button_Clicked"
+                        BackgroundColor="Blue"/>
+            </HorizontalStackLayout>-->
+            <Label Text="Food Expired: " Margin="10" FontSize="Large"/>
+                <ScrollView>
+                <Frame Padding="5" Margin="10" BorderColor="Blue" CornerRadius="5">
+                <ListView x:Name="ExpireList" ItemTapped="ExireList_ItemTapped"
+                          Style="{StaticResource LVStyle}" HeightRequest="300" RowHeight="120" HasUnevenRows="True">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid Padding="5" BackgroundColor="{DynamicResource PrimaryBackgroundColor}">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="100" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="100" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="4*" />
+                                        <ColumnDefinition Width="250" />
+                                    </Grid.ColumnDefinitions>
+                                    <CheckBox IsChecked="{Binding IsChecked}" CheckedChanged="CheckBox_CheckedChanged"
+                                              Grid.Row="0" Grid.RowSpan="1" Color="{DynamicResource PrimaryTextColor}"/>
+                                    <Label Text="{Binding UseByDate, StringFormat='{0:MM/dd/yyyy}'}"
+                                        Grid.Row="1" Grid.Column="1" TextColor="{DynamicResource PrimaryTextColor}" />
+                                    <Label Text="{Binding Name}" FontAttributes="Italic" Grid.Column="2"
+                                            Grid.Row="0" TextColor="{DynamicResource PrimaryTextColor}"/>
+                                    <Label Text="{Binding Location}" Grid.Row="1" Grid.Column="2"
+                                           TextColor="{DynamicResource PrimaryTextColor}"/>
+                                    <Image Source="{Binding ImageFile}" HeightRequest="100"
+                                           WidthRequest="100" Grid.Row="0" Grid.RowSpan="1"
+                                           Grid.Column="3" Aspect="AspectFill"/>
+
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                </Frame>
+                </ScrollView>
+            <Label Text="Food Expiring Soon: " Margin="10" FontSize="Large"/>
+                <ScrollView>
+                <Frame Padding="5" Margin="10" BorderColor="Blue" CornerRadius="5">
+                <ListView x:Name="ExpireSoonList" ItemTapped="ExpireSoonList_ItemTapped"
+                            Style="{StaticResource LVStyle}" HeightRequest="300" RowHeight="120" HasUnevenRows="True">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid Padding="5" BackgroundColor="{DynamicResource PrimaryBackgroundColor}">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="100" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="100" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="4*" />
+                                        <ColumnDefinition Width="250" />
+                                    </Grid.ColumnDefinitions>
+                                    <CheckBox IsChecked="{Binding IsChecked}" CheckedChanged="CheckBox_CheckedChanged"
+                                                Grid.Row="0" Grid.RowSpan="1" Color="{DynamicResource PrimaryTextColor}"/>
+                                    <Label Text="{Binding UseByDate, StringFormat='{0:MM/dd/yyyy}'}"
+                                        Grid.Row="1" Grid.Column="1" TextColor="{DynamicResource PrimaryTextColor}" />
+                                    <Label Text="{Binding Name}" FontAttributes="Italic" Grid.Column="2"
+                                            Grid.Row="0" TextColor="{DynamicResource PrimaryTextColor}"/>
+                                    <Label Text="{Binding Location}" Grid.Row="1" Grid.Column="2"
+                                            TextColor="{DynamicResource PrimaryTextColor}"/>
+                                    <Image Source="{Binding ImageFile}" HeightRequest="100"
+                                           WidthRequest="100" Grid.Row="0" Grid.RowSpan="1"
+                                           Grid.Column="3" Aspect="AspectFill"/>
+
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                </Frame>
+                </ScrollView>
+            <Label Text="Food Does Not Expire: " Margin="10" FontSize="Large"/>
+                <ScrollView>
+                <Frame Padding="5" Margin="10" BorderColor="Blue" CornerRadius="5">
+                <ListView x:Name="NoExpireList" ItemTapped="NoExpireList_ItemTapped"
+                          Style="{StaticResource LVStyle}" HeightRequest="300" RowHeight="120" HasUnevenRows="True">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid Padding="5" BackgroundColor="{DynamicResource PrimaryBackgroundColor}">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="100" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="100" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="4*" />
+                                        <ColumnDefinition Width="250" />
+                                    </Grid.ColumnDefinitions>
+                                    <CheckBox IsChecked="{Binding IsChecked}" CheckedChanged="CheckBox_CheckedChanged"
+                                              Grid.Row="0" Grid.RowSpan="1" Color="{DynamicResource PrimaryTextColor}"/>
+                                    <Label Text="{Binding UseByDate, StringFormat='{0:MM/dd/yyyy}'}"
+                                        Grid.Row="1" Grid.Column="1" TextColor="{DynamicResource PrimaryTextColor}" />
+                                    <Label Text="{Binding Name}" FontAttributes="Italic" Grid.Column="2"
+                                            Grid.Row="0" TextColor="{DynamicResource PrimaryTextColor}"/>
+                                    <Label Text="{Binding Location}" Grid.Row="1" Grid.Column="2"
+                                           TextColor="{DynamicResource PrimaryTextColor}"/>
+                                    <Image Source="{Binding ImageFile}" HeightRequest="100"
+                                           WidthRequest="100" Grid.Row="0" Grid.RowSpan="1"
+                                           Grid.Column="3" Aspect="AspectFill"/>
+
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                </Frame>
+                </ScrollView>
+        </VerticalStackLayout>
+
+</ContentPage>
+
